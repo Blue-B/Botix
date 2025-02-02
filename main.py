@@ -18,6 +18,36 @@ def is_allowed(update: Update) -> bool:
     user_id = update.effective_user.id
     return user_id in ALLOWED_USERS
 
+def is_gui_program(command: str) -> bool:
+    """명령어가 GUI 프로그램인지 확인"""
+    try:
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            executable="/bin/bash",
+            env={**os.environ, "DISPLAY": "", "WAYLAND_DISPLAY": "", "XDG_SESSION_TYPE": ""}  # GUI 환경 변수 제거
+        )
+        stdout, stderr = process.communicate(timeout=2)
+
+        # 실행 결과에 특정 오류 메시지가 있으면 GUI 프로그램일 가능성이 높음
+        gui_errors = [
+            "Gtk-WARNING",  # GTK 기반 GUI 프로그램
+            "Qt-WARNING",  # QT 기반 GUI 프로그램
+            "Unable to init server",  # X 서버가 없음
+            "cannot open display"  # X 서버가 없음
+        ]
+
+        for error in gui_errors:
+            if error in stderr:
+                return True
+
+        return False
+    except Exception:
+        return True  # 실행 자체가 안 되면 GUI 프로그램일 가능성이 높음
+
 def shell(update: Update, context: CallbackContext) -> None:
     """텔레그램에서 명령어를 입력받아 실행"""
     if not is_allowed(update):
@@ -29,24 +59,26 @@ def shell(update: Update, context: CallbackContext) -> None:
         update.message.reply_text("❌ 실행할 명령어를 입력하세요.")
         return
 
-    # GUI 명령어 실행 방지
-    BLOCKED_COMMANDS = ["nano", "vi", "top", "htop"]
-    if any(cmd in command for cmd in BLOCKED_COMMANDS):
-        update.message.reply_text("⛔ 지원되지 않는 명령어입니다.")
+    if is_gui_program(command):
+        update.message.reply_text("⛔ GUI가 필요한 프로그램은 실행할 수 없습니다.")
         return
 
     try:
-        # 명령 실행 (현재 쉘 환경을 유지)
         process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            executable="/bin/bash"
+            executable="/bin/bash",
+            cwd=os.getcwd()  # 현재 디렉터리 유지
         )
         stdout, stderr = process.communicate()
-        output = stdout if stdout else stderr
+        output = stdout.strip() if stdout.strip() else stderr.strip()
+
+        if not output:
+            output = "✅ 명령이 성공적으로 실행되었지만 출력이 없습니다."
+
         update.message.reply_text(f"💻 실행 결과:\n```{output}```", parse_mode="Markdown")
     except Exception as e:
         update.message.reply_text(f"⚠️ 오류 발생:\n{str(e)}")
