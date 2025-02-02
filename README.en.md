@@ -32,7 +32,7 @@
 Clone the repository and install required dependencies:
 ```sh
 git clone https://github.com/yourusername/Botix.git
-cd Botix
+./Botix/Scripts/activate
 pip install -r requirements.txt
 ```
 

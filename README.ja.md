@@ -32,7 +32,7 @@
 リポジトリをクローンし、必要な依存関係をインストールします:
 ```sh
 git clone https://github.com/yourusername/Botix.git
-cd Botix
+./Botix/Scripts/activate
 pip install -r requirements.txt
 ```
 

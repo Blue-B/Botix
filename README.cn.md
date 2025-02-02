@@ -32,7 +32,7 @@
 克隆存储库并安装所需的依赖项:
 ```sh
 git clone https://github.com/yourusername/Botix.git
-cd Botix
+./Botix/Scripts/activate
 pip install -r requirements.txt
 ```
 
