@@ -15,6 +15,9 @@
 
 </div>
 
+## 👀 プレビュー
+<img src="https://github.com/user-attachments/assets/3e1bba6c-cf82-4075-91d3-3c82519bb272" width="600" height="500"/>
+
 ## 🛠 技術スタック
 - **言語:** Python 3.x 🐍
 - **フレームワーク:** python-telegram-bot

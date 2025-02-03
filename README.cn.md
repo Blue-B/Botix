@@ -15,6 +15,9 @@
 
 </div>
 
+## 👀 预览
+<img src="https://github.com/user-attachments/assets/3e1bba6c-cf82-4075-91d3-3c82519bb272" width="600" height="500"/>
+
 ## 🛠 技术栈
 - **语言:** Python 3.x 🐍
 - **框架:** python-telegram-bot
