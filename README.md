@@ -10,10 +10,14 @@
 ![Telegram Bot API](https://img.shields.io/badge/Telegram%20Bot-Enabled-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-Restricted-red?style=flat-square)
 
+
 ## 🌍 언어
 [**🇰🇷 한국어**](README.md) | [**🇺🇸 English**](README.en.md) | [**🇨🇳 中文**](README.cn.md) | [**🇯🇵 日本語**](README.ja.md)
 
 </div>
+
+## 👀 미리보기
+<img src="https://github.com/user-attachments/assets/3e1bba6c-cf82-4075-91d3-3c82519bb272" width="600" height="500"/>
 
 ## 🛠 기술 스택
 - **언어:** Python 3.x 🐍
