@@ -50,17 +50,21 @@ def is_gui_program(command: str) -> bool:
 
 def shell(update: Update, context: CallbackContext) -> None:
     """텔레그램에서 명령어를 입력받아 실행"""
+    message = update.effective_message  # 안전한 메시지 객체 가져오기
+    if message is None:
+        return  # 메시지가 없으면 함수 종료
+
     if not is_allowed(update):
-        update.message.reply_text("🚫 접근이 거부되었습니다.")
+        message.reply_text("🚫 접근이 거부되었습니다.")
         return
 
     command = " ".join(context.args)
     if not command:
-        update.message.reply_text("❌ 실행할 명령어를 입력하세요.")
+        message.reply_text("❌ 실행할 명령어를 입력하세요.")
         return
 
     if is_gui_program(command):
-        update.message.reply_text("⛔ GUI가 필요한 프로그램은 실행할 수 없습니다.")
+        message.reply_text("⛔️ GUI가 필요한 프로그램은 실행할 수 없습니다.")
         return
 
     try:
@@ -79,9 +83,9 @@ def shell(update: Update, context: CallbackContext) -> None:
         if not output:
             output = "✅ 명령이 성공적으로 실행되었지만 출력이 없습니다."
 
-        update.message.reply_text(f"💻 실행 결과:\n```{output}```", parse_mode="Markdown")
+        message.reply_text(f"💻 실행 결과:\n```{output}```", parse_mode="Markdown")
     except Exception as e:
-        update.message.reply_text(f"⚠️ 오류 발생:\n{str(e)}")
+        message.reply_text(f"⚠️ 오류 발생:\n{str(e)}")
 
 def main():
     """텔레그램 봇 실행"""
