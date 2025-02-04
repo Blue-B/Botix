@@ -35,7 +35,7 @@
 ## 📥 설치 방법
 저장소를 클론하고 필요한 패키지를 설치하세요:
 ```sh
-git clone https://github.com/yourusername/Botix.git
+git clone https://github.com/Blue-B/Botix.git
 ./Botix/Scripts/activate
 pip install -r requirements.txt
 ```

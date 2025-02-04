@@ -34,7 +34,7 @@
 ## 📥 Installation
 Clone the repository and install required dependencies:
 ```sh
-git clone https://github.com/yourusername/Botix.git
+git clone https://github.com/Blue-B/Botix.git
 ./Botix/Scripts/activate
 pip install -r requirements.txt
 ```

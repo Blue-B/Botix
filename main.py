@@ -6,7 +6,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 load_dotenv()
-TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
+TOKEN = os.getenv("Bot_Token")
 
 ALLOWED_USERS = list(map(int, os.getenv("U_Number", "").split(",")))
 

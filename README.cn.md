@@ -34,7 +34,7 @@
 ## 📥 安装方法
 克隆存储库并安装所需的依赖项:
 ```sh
-git clone https://github.com/yourusername/Botix.git
+git clone https://github.com/Blue-B/Botix.git
 ./Botix/Scripts/activate
 pip install -r requirements.txt
 ```

@@ -34,7 +34,7 @@
 ## 📥 インストール方法
 リポジトリをクローンし、必要な依存関係をインストールします:
 ```sh
-git clone https://github.com/yourusername/Botix.git
+git clone https://github.com/Blue-B/Botix.git
 ./Botix/Scripts/activate
 pip install -r requirements.txt
 ```
